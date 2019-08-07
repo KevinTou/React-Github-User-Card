@@ -5,6 +5,7 @@ import './App.css';
 
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import NavBar from './NavBar/NavBar';
 import UserCard from './Cards/UserCard';
@@ -50,7 +51,7 @@ class App extends React.Component {
 
   render() {
     if (!this.state.user) {
-      return <div>No user found.</div>;
+      return <LinearProgress />;
     }
 
     return (
