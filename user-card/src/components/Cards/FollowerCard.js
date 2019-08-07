@@ -11,11 +11,16 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
-    marginTop: '1rem',
+    margin: '1rem auto',
     textAlign: 'center',
   },
   media: {
-    height: 300,
+    height: '100%',
+    width: '100%',
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 });
 
@@ -25,25 +30,26 @@ const FollowerCard = ({ follower }) => {
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        {/* <CardMedia
+        <CardMedia
+          component='img'
           className={classes.media}
           image={follower.avatar_url}
           title='GitHub follower avatar'
-        /> */}
+        />
         <CardContent>
           <Typography gutterBottom variant='h5' component='h2'>
             {follower.login}
           </Typography>
-          <Typography variant='body2' color='textSecondary' component='p'>
-            {follower.bio}
-          </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size='medium' color='primary'>
+      <CardActions className={classes.buttons}>
+        <Button size='medium' href={follower.html_url} color='primary'>
           GitHub
         </Button>
-        <Button size='medium' color='primary'>
+        <Button
+          size='medium'
+          href={`https://github.com/${follower.login}?tab=followers`}
+          color='primary'>
           Followers
         </Button>
       </CardActions>

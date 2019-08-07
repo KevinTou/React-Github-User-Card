@@ -11,9 +11,15 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
+    margin: '3rem auto',
   },
   media: {
-    height: 300,
+    height: '100%',
+    width: '100%',
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 });
 
@@ -24,6 +30,7 @@ const UserCard = ({ user }) => {
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
+          component='img'
           className={classes.media}
           image={user.avatar_url}
           title='GitHub user avatar'
@@ -33,16 +40,22 @@ const UserCard = ({ user }) => {
             {user.name}
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>
-            {user.bio}
+            {user.location ? user.location : 'No location available.'}
+          </Typography>
+          <Typography variant='body2' color='textSecondary' component='p'>
+            {user.bio ? user.bio : 'No bio available.'}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size='medium' color='primary'>
+      <CardActions className={classes.buttons}>
+        <Button size='medium' href={user.html_url} color='primary'>
           GitHub
         </Button>
-        <Button size='medium' color='primary'>
-          Followers
+        <Button
+          size='medium'
+          href={`https://github.com/${user.login}?tab=followers`}
+          color='primary'>
+          Followers ({user.followers})
         </Button>
       </CardActions>
     </Card>

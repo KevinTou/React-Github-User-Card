@@ -1,5 +1,6 @@
 import React from 'react';
-// import Container from '@material-ui/core/Container';
+
+import Grid from '@material-ui/core/Grid';
 
 import FollowerCard from './FollowerCard';
 
@@ -10,9 +11,15 @@ const FollowerContainer = ({ followers }) => {
 
   return (
     <>
-      {followers.map(follower => {
-        return <FollowerCard follower={follower} />;
-      })}
+      <Grid container spacing={3}>
+        {followers.map(follower => {
+          return (
+            <Grid item xs={12} sm={6} md={3}>
+              <FollowerCard key={follower.id} follower={follower} />
+            </Grid>
+          );
+        })}
+      </Grid>
     </>
   );
 };
